@@ -1,1 +1,11 @@
-/* You can add global styles to this file, and also import other style files */
+body {
+    background-image: url("/assets/fundo-papel-amarelado.jpg");
+    background-size: cover;
+    margin: 0;
+    font-family: 'Courier Prime';
+}
+
+@font-face {
+    font-family: 'Courier Prime';
+    src: url('fonts/Courier Prime.ttf');
+}

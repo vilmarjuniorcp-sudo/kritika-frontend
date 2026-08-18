@@ -1,0 +1,22 @@
+<div>
+    <h1>{{book().name}}</h1>
+    <form [formGroup]="chapterForm" (ngSubmit)="submitForm()">
+        <input class="inputName"
+            type="text"
+            id="name"
+            placeholder="Nome do Capítulo"
+            formControlName="name"
+        />
+        <textarea class="typewriter-paper"
+            type="text"
+            id="inputContent"
+            placeholder="Comece a escrever ..."
+            formControlName="content"
+        ></textarea>
+        <button id="saveButton" class="typewriter-button"
+            [disabled]="chapterForm.invalid"
+            type="submit"
+            >Salvar capítulo
+        </button>
+    </form>
+</div>

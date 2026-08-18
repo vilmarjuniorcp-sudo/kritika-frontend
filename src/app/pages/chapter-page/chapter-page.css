@@ -1,0 +1,168 @@
+:host {
+    height: 100%;
+    display: block;
+}
+
+div {
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+}
+
+h1 {
+    margin: 0px auto;
+    padding-top: 20px;
+    padding-bottom: 20px;
+    width: fit-content;
+    font-size: 50px;
+    flex: 0 0 auto;
+}
+
+form {
+    margin: 0px auto;
+    padding-top: 25px;
+    padding-bottom: 25px;
+    width: fit-content;
+    display: flex;
+    flex-direction: column;
+    font-size: 25px;
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+}
+
+.inputName {
+    font-size: 30px;
+    font-family: 'Courier Prime';
+    background-color: rgba(255,255,255,0);
+    border: none;
+    margin: 20px auto;
+    flex: 0 0 auto;
+    width: 700px;
+}
+
+#inputContent {
+    font-size: 20px;
+    width: 700px;
+    flex: 1;
+    margin-top: 10px;
+    margin-bottom: 10px;
+}
+
+#saveButton {
+    flex: 0 0 auto;
+    margin-top: 10px;
+    margin-bottom: 10px;
+}
+
+.typewriter-button {
+    padding: 12px 28px;
+
+    border: 2px solid #5f5447;
+    border-radius: 12px;
+
+    background:
+        linear-gradient(#4d4d4d, #2d2d2d);
+
+    color: #efe3c2;
+
+    font-family: "Courier New", monospace;
+    font-weight: bold;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+
+    box-shadow:
+        inset 0 1px 2px rgba(255,255,255,.15),
+        0 4px 8px rgba(0,0,0,.35);
+
+    transition: .2s;
+}
+
+.typewriter-button:hover {
+    background:
+        linear-gradient(#5d5d5d, #363636);
+
+    transform: translateY(-2px);
+}
+
+.typewriter-button:active {
+    transform: translateY(2px);
+}
+
+.typewriter-paper {
+    width: 100%;
+    min-height: 300px;
+    padding: 25px 30px;
+
+    box-sizing: border-box;
+
+    /* Papel amarelado */
+    background:
+        radial-gradient(
+            ellipse at center,
+            rgba(255, 248, 220, 0.7) 0%,
+            rgba(230, 211, 164, 0.35) 100%
+        ),
+        #ead9ad;
+
+    /* Textura sutil */
+    background-image:
+        repeating-linear-gradient(
+            0deg,
+            rgba(90, 65, 30, 0.025) 0px,
+            rgba(90, 65, 30, 0.025) 1px,
+            transparent 1px,
+            transparent 4px
+        ),
+        radial-gradient(
+            circle at 20% 30%,
+            rgba(100, 70, 30, 0.08) 0,
+            transparent 35%
+        ),
+        radial-gradient(
+            circle at 80% 70%,
+            rgba(100, 70, 30, 0.06) 0,
+            transparent 40%
+        ),
+        #ead9ad;
+
+    border: none;
+    border-left: 1px solid #c4aa78;
+    border-right: 1px solid #c4aa78;
+
+    outline: none;
+
+    /* Sombra do papel */
+    box-shadow:
+        0 3px 6px rgba(60, 40, 15, 0.18),
+        0 10px 25px rgba(60, 40, 15, 0.12),
+        inset 0 0 30px rgba(110, 80, 30, 0.08);
+
+    /* Texto datilografado */
+    color: #34281c;
+
+    font-family: "Courier New", Courier, monospace;
+    font-size: 16px;
+    line-height: 1.7;
+
+    resize: vertical;
+
+    transition:
+        box-shadow 0.2s ease,
+        background-color 0.2s ease;
+}
+
+.typewriter-paper:focus {
+    background-color: #f0dfb5;
+
+    box-shadow:
+        0 4px 8px rgba(60, 40, 15, 0.2),
+        0 12px 30px rgba(60, 40, 15, 0.14),
+        inset 0 0 30px rgba(110, 80, 30, 0.05);
+}
+
+.typewriter-paper::placeholder {
+    color: #79664b;
+    opacity: 0.7;
+    font-style: italic;
+}

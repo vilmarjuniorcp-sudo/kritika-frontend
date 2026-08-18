@@ -1,0 +1,24 @@
+header {
+    height: 150px;
+    width: auto;
+}
+
+header img{
+    height: 150px;
+}
+
+main {
+    background-color: rgba(255,255,255,0.5);
+    height: fit-content;
+    display: flex;
+    min-height: 100vh;
+}
+
+.left-side {
+    width: 225px;
+    background-color: rgba(0,0,0,0.2)
+}
+
+.right-side {
+    width: 100%;
+}

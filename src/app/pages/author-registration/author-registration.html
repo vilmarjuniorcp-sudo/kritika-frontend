@@ -1,0 +1,23 @@
+<h1>Cadastro de Autor</h1>
+
+<form [formGroup]="authorForm" (ngSubmit)="saveAuthor()">
+    <label for="name">Nome</label>
+    <input
+        type="text"
+        id="name"
+        placeholder="Digite o nome do autor"
+        formControlName="name"
+    />
+    <label for="about">Sobre</label>
+    <textarea
+        type="text"
+        id="about"
+        placeholder="Escreva uma breve descrição sobre o autor"
+        formControlName="about"
+    ></textarea>
+    <button
+        [disabled]="authorForm.invalid"
+        type="submit"
+        >Salvar Author
+    </button>
+</form>

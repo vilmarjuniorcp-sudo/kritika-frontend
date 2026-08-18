@@ -1,0 +1,44 @@
+@if (isNew) {
+    <h1>Cadastro de livro</h1>
+}
+
+<form [formGroup]="bookForm" (ngSubmit)="submitForm()">
+    @if (isNew) {
+        <label for="inputName">Nome</label>
+    }
+    <input
+        type="text"
+        id="inputName"
+        [ngClass]="isNew ? 'typewriter-paper input-name' : 'book-title'"
+        placeholder="Digite o nome do livro"
+        formControlName="name"
+    />
+    <label for="inputDescription">Sobre</label>
+    <textarea
+        type="text"
+        id="inputDescription"
+        class="typewriter-paper"
+        placeholder="Escreva uma breve descrição sobre o livro"
+        formControlName="description"
+    ></textarea>
+    <button id="saveButton"
+        class="typewriter-button"
+        [disabled]="bookForm.invalid"
+        type="submit"
+        >Salvar Livro
+    </button>
+</form>
+
+@for (chapter of book().chapters; track chapter.id) {
+    <div id="chapter-card-id" class="chapter-card"
+    [routerLink]="['/author',authorId,'book', book().id,'chapter',chapter.id]">
+        <h2 class="chapter-title">{{chapter.name}}</h2>
+    </div>
+}
+
+<div class="container-add-button">
+    <button class="typewriter-button-light add-button"
+        [routerLink]="['/author',authorId,'book',book().id,'chapter','new']">
+        <img id="addImage" src="../../../assets/icone-adicionar.png">
+    </button>
+</div>
