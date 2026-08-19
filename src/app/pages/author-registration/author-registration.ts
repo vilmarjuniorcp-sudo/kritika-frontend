@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, inject, OnInit } from '@angular/core';
 import { FormControl, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 import { AuthorService } from '../../services/authors/author-service';
 
@@ -11,10 +11,7 @@ import { AuthorService } from '../../services/authors/author-service';
 export class AuthorRegistration implements OnInit{
 
   authorForm!: FormGroup
-
-  constructor(
-    private authorService: AuthorService
-  ) {}
+  private authorService = inject(AuthorService)
 
   ngOnInit(): void {
     this.formInit();

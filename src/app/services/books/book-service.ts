@@ -1,5 +1,5 @@
 import { HttpClient } from '@angular/common/http';
-import { Injectable } from '@angular/core';
+import { inject, Injectable } from '@angular/core';
 import { Book } from '../interfaces/book';
 import { Observable } from 'rxjs';
 import { Page } from '../interfaces/page';
@@ -10,8 +10,7 @@ import { Page } from '../interfaces/page';
 export class BookService {
 
   private readonly API = 'http://localhost:8080/books'
-
-  constructor (private http: HttpClient) {}
+  private http = inject(HttpClient)
 
   saveBook(book: Book): Observable<Book> {
     return this.http.post<Book>(this.API,book);

@@ -1,5 +1,5 @@
 import { HttpClient } from '@angular/common/http';
-import { Injectable } from '@angular/core';
+import { inject, Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { Chapter } from '../interfaces/chapter';
 
@@ -9,10 +9,7 @@ import { Chapter } from '../interfaces/chapter';
 export class ChapterService {
 
   private readonly API = 'http://localhost:8080/chapters'
-
-  constructor (
-    private http: HttpClient
-  ) {}
+  private http = inject(HttpClient)
 
   getChapter(id: number): Observable<Chapter> {
     const url = `${this.API}/${id}`;

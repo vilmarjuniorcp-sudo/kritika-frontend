@@ -1,7 +1,7 @@
-import { Component, OnInit, signal } from '@angular/core';
+import { Component, inject, OnInit, signal } from '@angular/core';
 import { FormControl, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 import { BookService } from '../../services/books/book-service';
-import { ActivatedRoute, Router, RouterLink } from '@angular/router';
+import { ActivatedRoute, RouterLink } from '@angular/router';
 import { Book } from '../../services/interfaces/book';
 import { NgClass } from "../../../../node_modules/@angular/common";
 
@@ -14,18 +14,14 @@ import { NgClass } from "../../../../node_modules/@angular/common";
 export class BookPage implements OnInit {
 
   bookForm!: FormGroup
-  authorId: string = ''
+  authorId = ''
   book = signal<Book>({
     name: '',
     description: ''
   })
-  isNew: boolean = false
-
-  constructor(
-    private bookService: BookService,
-    private router: Router,
-    private activatedRoute: ActivatedRoute
-  ) {}
+  isNew = false
+  private bookService = inject(BookService)
+  private activatedRoute = inject(ActivatedRoute)
 
   ngOnInit(): void {
     const id = this.activatedRoute.snapshot.paramMap.get('id');
@@ -60,13 +56,13 @@ export class BookPage implements OnInit {
   }
 
   saveBook(newBook: Book) {
-    this.bookService.saveBook(newBook).subscribe((book) => {
+    this.bookService.saveBook(newBook).subscribe(() => {
       alert('Livro salvo!');
     })
   }
 
   editBook(newBook: Book) {
-    this.bookService.editBook(newBook).subscribe((book) => {
+    this.bookService.editBook(newBook).subscribe(() => {
       alert('Livro editado!');
     })
   }

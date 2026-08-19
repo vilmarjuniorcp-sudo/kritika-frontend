@@ -1,11 +1,10 @@
-import { Component, OnInit, signal } from '@angular/core';
+import { Component, inject, OnInit, signal } from '@angular/core';
 import { AuthorService } from '../../services/authors/author-service';
 import { BookService } from '../../services/books/book-service';
-import { ActivatedRoute, Router, RouterLink } from '@angular/router';
+import { ActivatedRoute, RouterLink } from '@angular/router';
 import { Author } from '../../services/interfaces/author';
 import { Book } from '../../services/interfaces/book';
 import { FormControl, FormGroup, Validators, ReactiveFormsModule } from '@angular/forms';
-import { delay } from 'rxjs';
 
 @Component({
   selector: 'app-author-page',
@@ -15,21 +14,17 @@ import { delay } from 'rxjs';
 })
 export class AuthorPage implements OnInit {
 
-  id: string = '';
+  id = '';
   author = signal<Author>({
     name: '',
     about: ''
   });
   books = signal<Book[]>([]);
-  edit: boolean = false;
+  edit = false;
   authorForm!: FormGroup;
-
-  constructor(
-    private authorService: AuthorService,
-    private bookService: BookService,
-    private router: Router,
-    private activatedRoute: ActivatedRoute
-  ) {}
+  private authorService = inject(AuthorService)
+  private bookService = inject(BookService)
+  private activatedRoute = inject(ActivatedRoute)
 
   ngOnInit(): void {
     this.formInit();
@@ -81,7 +76,7 @@ export class AuthorPage implements OnInit {
   }
 
   editAuthor(author: Author) {
-    this.authorService.editAuthor(author).subscribe((author) => {
+    this.authorService.editAuthor(author).subscribe(() => {
       this.loadAuthor();
       alert('Autor editado!');
     })
