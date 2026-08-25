@@ -24,9 +24,9 @@ export class AuthorService {
     return this.http.put<Author>(this.API, author);
   }
 
-  deleteAuthor(id: number) {
+  deleteAuthor(id: number): Observable<void> {
     const url = `${this.API}/${id}`;
-    this.http.delete(url);
+    return this.http.delete<void>(url);
   }
 
 }
