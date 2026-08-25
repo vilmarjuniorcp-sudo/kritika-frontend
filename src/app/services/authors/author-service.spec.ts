@@ -2,7 +2,7 @@ import { TestBed } from '@angular/core/testing';
 
 import { AuthorService } from './author-service';
 import { HttpTestingController, provideHttpClientTesting } from '@angular/common/http/testing';
-import { HttpClient, provideHttpClient } from '@angular/common/http';
+import { provideHttpClient } from '@angular/common/http';
 import { Author } from '../interfaces/author';
 
 describe('AuthorService', () => {
