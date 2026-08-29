@@ -5,10 +5,11 @@ import { ActivatedRoute, RouterLink } from '@angular/router';
 import { Author } from '../../services/interfaces/author';
 import { Book } from '../../services/interfaces/book';
 import { FormControl, FormGroup, Validators, ReactiveFormsModule } from '@angular/forms';
+import { AutoResize } from '../../directives/auto-resize';
 
 @Component({
   selector: 'app-author-page',
-  imports: [RouterLink, ReactiveFormsModule],
+  imports: [RouterLink, ReactiveFormsModule, AutoResize],
   templateUrl: './author-page.html',
   styleUrl: './author-page.css',
 })
@@ -20,7 +21,9 @@ export class AuthorPage implements OnInit {
     about: ''
   });
   books = signal<Book[]>([]);
+  isNew = false;
   edit = false;
+  containerType = '';
   authorForm!: FormGroup;
   private authorService = inject(AuthorService)
   private bookService = inject(BookService)
@@ -35,8 +38,13 @@ export class AuthorPage implements OnInit {
 
   idInit() {
     const id = this.activatedRoute.snapshot.paramMap.get('id');
-    if (id) {
+    if (id && id != 'new') {
       this.id = id;
+      this.containerType = 'display';
+    } else {
+      this.isNew = true;
+      this.edit = true;
+      this.containerType = 'new';
     }
   }
 
@@ -49,10 +57,8 @@ export class AuthorPage implements OnInit {
 
   loadAuthor() {
     this.authorService.getAuthor(parseInt(this.id)).subscribe((author) => {
-      console.log('Recebi:', author);
       this.author.set(author);
       this.authorForm.patchValue(author);
-      console.log('Depois da atribuição:', this.author);
     })
   }
 
@@ -66,6 +72,7 @@ export class AuthorPage implements OnInit {
 
   editButtonTrue() {
     this.edit = true;
+    this.containerType = 'edit';
   }
 
   submitAuthorForm() {
@@ -73,6 +80,7 @@ export class AuthorPage implements OnInit {
     author.id = this.author().id;
     this.editAuthor(author);
     this.edit = false;
+    this.containerType = 'display';
   }
 
   editAuthor(author: Author) {

@@ -15,20 +15,23 @@
     display: flex;
     height: auto;
     width: 100%;
+    border: none;
 }
 
 h1 {
     padding-left: 40px;
+    border: 1px solid rgba(255,255,255,0);
 }
 
 h4 {
     padding-left: 40px;
+    border: 1px solid rgba(255,255,255,0);
 }
 
 #inputName {
     font-family: 'Courier Prime';
     background-color: rgba(255,255,255,0);
-    border: none;
+    border: 1px solid #000000;
     font-size: 2em;
     font-weight: bold;
     display: block;
@@ -37,13 +40,14 @@ h4 {
     margin-inline-start: 0px;
     margin-inline-end: 0px;
     unicode-bidi: isolate;
-    padding-left: 40px;
+    padding: 0 0 0 20px;
+    margin-left: 20px;
 }
 
 #inputAbout {
     font-family: 'Courier Prime';
     background-color: rgba(255,255,255,0);
-    border: none;
+    border: 1px solid #000000;
     display: block;
     margin-block-start: 1.33em;
     margin-block-end: 1.33em;
@@ -51,8 +55,75 @@ h4 {
     margin-inline-end: 0px;
     font-weight: bold;
     unicode-bidi: isolate;
-    padding-left: 40px;
-    width: 100%;
+    padding: 0 0 0 20px;
+    margin-left: 20px;
+    width: calc(100% - 20px);
+    min-height: 40px;
+    resize: none;
+    overflow: hidden;
+    box-sizing: border-box;
+    white-space: pre-wrap;
+    font-size: 16px;
+}
+
+#containerNameNew {
+    display: flex;
+    padding-top: 10px;
+}
+
+#inputNameNew {
+    font-family: 'Courier Prime';
+    background-color: rgba(255,255,255,0);
+    border: none;
+    font-size: 2em;
+    font-weight: bold;
+    resize: none;
+    overflow: hidden;
+    box-sizing: border-box;
+    white-space: pre-wrap;
+    padding: 0 0 0 20px;
+    margin-left: 20px;
+    flex: 1;
+}
+
+#labelNameNew {
+    font-family: 'Courier Prime';
+    background-color: rgba(255,255,255,0);
+    font-size: 2em;
+    font-weight: bold;
+    padding: 0 0 0 20px;
+    margin-left: 20px;
+}
+
+#containerAboutNew {
+    display: flex;
+    padding-top: 10px;
+}
+
+#inputAboutNew {
+    font-family: 'Courier Prime';
+    background-color: rgba(255,255,255,0);
+    border: none;
+    font-weight: bold;
+    padding: 0 0 0 20px;
+    margin-left: 20px;
+    min-height: 40px;
+    resize: none;
+    overflow: hidden;
+    box-sizing: border-box;
+    white-space: pre-wrap;
+    font-size: 16px;
+    flex: 1;
+}
+
+#labelAboutNew {
+    font-family: 'Courier Prime';
+    background-color: rgba(255,255,255,0);
+    font-weight: bold;
+    padding: 0 0 0 20px;
+    margin-left: 20px;
+    min-height: 40px;
+    font-size: 16px;    
 }
 
 #add-button {
@@ -230,4 +301,10 @@ h4 {
 
 .book-card:hover .book-title {
     color: #1c1209;
+}
+
+.card-container {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0px;
 }

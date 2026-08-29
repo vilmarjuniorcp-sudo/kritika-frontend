@@ -69,6 +69,8 @@ export class BookPage implements OnInit {
 
   submitForm() {
     const newBook = this.bookForm.value;
+    const id = this.activatedRoute.snapshot.paramMap.get('id');
+    newBook.id = id ? parseInt(id) : null;
     if (newBook.id) {
       this.editBook(newBook);
     } else {
