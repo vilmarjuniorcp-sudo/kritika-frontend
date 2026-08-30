@@ -1,13 +1,12 @@
-import { AfterViewInit, Directive, ElementRef, HostListener } from '@angular/core';
+import { AfterViewInit, Directive, ElementRef, HostListener, inject } from '@angular/core';
 
 @Directive({
-  selector: 'textarea[autoResize]',
+  selector: 'textarea[appAutoResize]',
   standalone: true
 })
 export class AutoResize implements AfterViewInit {
-  constructor(
-    private elementRef: ElementRef<HTMLTextAreaElement>
-  ) {}
+
+  private elementRef = inject(ElementRef<HTMLTextAreaElement>);
 
   ngAfterViewInit(): void {
     this.adjustHeight();

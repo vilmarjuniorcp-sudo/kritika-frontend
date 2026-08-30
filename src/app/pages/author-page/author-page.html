@@ -6,7 +6,7 @@
                     <div id="containerNameNew">
                         <label id="labelNameNew" for="inputNameNew">Nome do livro: </label>
                         <textarea
-                            autoResize
+                            appAutoResize
                             type="text"
                             id="inputNameNew"
                             placeholder=""
@@ -16,7 +16,7 @@
                     <div id="containerAboutNew">
                         <label id="labelAboutNew" for="inputAboutNew">Sobre o autor: </label>
                         <textarea
-                            autoResize
+                            appAutoResize
                             type="text"
                             id="inputAboutNew"
                             placeholder=""
@@ -42,7 +42,7 @@
                         formControlName="name"
                     />
                     <textarea
-                        autoResize
+                        appAutoResize
                         type="text"
                         id="inputAbout"
                         placeholder="Sobre o autor ..."
@@ -72,7 +72,7 @@
     }
 </div>
 
-@if (containerType != 'new') {
+@if (containerType !== 'new') {
     <button id="add-button" class="typewriter-button"
         [routerLink]="['/author',author().id,'book','new']"
         >Adicionar obra
