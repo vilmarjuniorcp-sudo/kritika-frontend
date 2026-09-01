@@ -2,13 +2,14 @@ import { HttpClient } from '@angular/common/http';
 import { inject, Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { Chapter } from '../interfaces/chapter';
+import { environment } from '../../../environments/environment';
 
 @Injectable({
   providedIn: 'root',
 })
 export class ChapterService {
 
-  private readonly API = 'http://localhost:8080/chapters'
+  private readonly API = `${environment.apiUrl}/chapters`
   private http = inject(HttpClient)
 
   getChapter(id: number): Observable<Chapter> {

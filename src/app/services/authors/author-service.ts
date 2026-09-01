@@ -2,13 +2,14 @@ import { HttpClient } from '@angular/common/http';
 import { inject, Injectable } from '@angular/core';
 import { Author } from '../interfaces/author';
 import { Observable } from 'rxjs';
+import { environment } from '../../../environments/environment';
 
 @Injectable({
   providedIn: 'root',
 })
 export class AuthorService {
 
-  private readonly API = 'http://localhost:8080/authors'
+  private readonly API = `${environment.apiUrl}/authors`
   private http = inject(HttpClient)
 
   saveAuthor(author: Author): Observable<Author> {

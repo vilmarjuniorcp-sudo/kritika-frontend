@@ -3,13 +3,14 @@ import { inject, Injectable } from '@angular/core';
 import { Book } from '../interfaces/book';
 import { Observable } from 'rxjs';
 import { Page } from '../interfaces/page';
+import { environment } from '../../../environments/environment';
 
 @Injectable({
   providedIn: 'root',
 })
 export class BookService {
 
-  private readonly API = 'http://localhost:8080/books'
+  private readonly API = `${environment.apiUrl}/books`
   private http = inject(HttpClient)
 
   saveBook(book: Book): Observable<Book> {
