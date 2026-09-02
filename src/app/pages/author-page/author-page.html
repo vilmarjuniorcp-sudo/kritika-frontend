@@ -1,51 +1,93 @@
 <div class="container-author">
-    @if (edit) {
-        <form [formGroup] = "authorForm" class="form-author" (ngSubmit)="submitAuthorForm()">
+    @switch (containerType) {
+        @case ('new') {
+            <form [formGroup]="authorForm" class="form-author">
+                <div class="container-info">
+                    <div id="containerNameNew">
+                        <label id="labelNameNew" for="inputNameNew">Nome do livro: </label>
+                        <textarea
+                            appAutoResize
+                            type="text"
+                            id="inputNameNew"
+                            placeholder=""
+                            formControlName="name"
+                        ></textarea>
+                    </div>
+                    <div id="containerAboutNew">
+                        <label id="labelAboutNew" for="inputAboutNew">Sobre o autor: </label>
+                        <textarea
+                            appAutoResize
+                            type="text"
+                            id="inputAboutNew"
+                            placeholder=""
+                            formControlName="about"
+                        ></textarea>
+                    </div>
+                </div>
+                <div class="container-button">
+                    <button id="save-button" class="typewriter-button-light" type="submit">
+                        <img id="save-image" src="../../../assets/icone-salvar.png"
+                            alt="Ícone para a funcionalidade de Salvar">
+                    </button>
+                </div>
+            </form>
+        }
+        @case ('edit') {
+            <form [formGroup] = "authorForm" class="form-author" (ngSubmit)="submitAuthorForm()">
+                <div class="container-info">
+                    <input
+                        type="text"
+                        id="inputName"
+                        placeholder="Nome do Livro"
+                        formControlName="name"
+                    />
+                    <textarea
+                        appAutoResize
+                        type="text"
+                        id="inputAbout"
+                        placeholder="Sobre o autor ..."
+                        formControlName="about"
+                    ></textarea>
+                </div>
+                <div class="container-button">
+                    <button id="save-button" class="typewriter-button-light" type="submit">
+                        <img id="save-image" src="../../../assets/icone-salvar.png"
+                            alt="Ícone para a funcionalidade de Salvar">
+                    </button>
+                </div>
+            </form>
+        }
+        @case ('display') {
             <div class="container-info">
-                <input
-                    type="text"
-                    id="inputName"
-                    placeholder="Nome do Livro"
-                    formControlName="name"
-                />
-                <textarea
-                    type="text"
-                    id="inputAbout"
-                    placeholder="Sobre o autor ..."
-                    formControlName="about"
-                ></textarea>
+                <h1>{{author().name}}</h1>
+                <h4>{{author().about}}</h4>
             </div>
             <div class="container-button">
-                <button id="save-button" class="typewriter-button-light" type="submit">
-                    <img id="save-image" src="../../../assets/icone-salvar.png">
+                <button id="edit-button" class="typewriter-button-light" (click)="editButtonTrue()"
+                    ><img id="edit-image" src="../../../assets/icone-editar-escrever.png"
+                        alt="Ícone para a funcionalidade de editar">
                 </button>
             </div>
-        </form>
-    } @else {
-        <div class="container-info">
-            <h1>{{author().name}}</h1>
-            <h4>{{author().about}}</h4>
-        </div>
-        <div class="container-button">
-            <button id="edit-button" class="typewriter-button-light" (click)="editButtonTrue()"
-                ><img id="edit-image" src="../../../assets/icone-editar-escrever.png">
-            </button>
-        </div>
+        }
     }
 </div>
 
-<button id="add-button" class="typewriter-button"
-    [routerLink]="['/author',author().id,'book','new']"
-    >Adicionar obra
-</button>
-
-@for (book of books(); track book.id) {
-    <div class="book-card" [routerLink]="['/author',author().id,'book',book.id]">
-        <h2 class="book-title">
-            {{book.name}}
-        </h2>
-        <p class="book-description">
-            {{book.description}}
-        </p>
-    </div>
+@if (containerType !== 'new') {
+    <button id="add-button" class="typewriter-button"
+        [routerLink]="['/author',author().id,'book','new']"
+        >Adicionar obra
+    </button>
 }
+
+<div class="card-container">
+    @for (book of books(); track book.id) {
+        <div class="book-card" [routerLink]="['/author',author().id,'book',book.id]">
+            <h2 class="book-title">
+                {{book.name}}
+            </h2>
+            <p class="book-description">
+                {{book.description}}
+            </p>
+        </div>
+    }
+</div>

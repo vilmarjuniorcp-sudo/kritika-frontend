@@ -1,4 +1,4 @@
-import { Component, OnInit, signal } from '@angular/core';
+import { Component, inject, OnInit, signal } from '@angular/core';
 import { Chapter } from '../../services/interfaces/chapter';
 import { ChapterService } from '../../services/chapters/chapter-service';
 import { ActivatedRoute } from '@angular/router';
@@ -14,7 +14,7 @@ import { FormControl, FormGroup, Validators, ɵInternalFormsSharedModule, Reacti
 })
 export class ChapterPage implements OnInit {
 
-  bookId: string = ''
+  bookId = ''
   chapter = signal<Chapter> ({
     name: '',
     content:''
@@ -24,12 +24,9 @@ export class ChapterPage implements OnInit {
     description: ''
   })
   chapterForm!: FormGroup
-
-  constructor(
-    private chapterService: ChapterService,
-    private bookService: BookService,
-    private activatedRoute: ActivatedRoute
-  ) {}
+  private chapterService = inject(ChapterService)
+  private bookService = inject(BookService)
+  private activatedRoute = inject(ActivatedRoute)
 
   ngOnInit(): void {
     this.formInit();
@@ -66,13 +63,13 @@ export class ChapterPage implements OnInit {
   }
 
   saveChapter(newChapter: Chapter) {
-    this.chapterService.saveChapter(newChapter).subscribe((chapter) => {
+    this.chapterService.saveChapter(newChapter).subscribe(() => {
       alert('Capítulo salvo!');
     })
   }
 
   editChapter(newChapter: Chapter) {
-    this.chapterService.editChapter(newChapter).subscribe((chapter) => {
+    this.chapterService.editChapter(newChapter).subscribe(() => {
       alert('Capítulo editado!');
     })
   }
